@@ -12,60 +12,60 @@ import autocompleteProductTemplate from '../templates/autocomplete-product';
  * @description Instant Search class to display content in the page's autocomplete
  */
 class Autocomplete {
-  /**
-   * @constructor
-   */
-  constructor() {
-    this._registerClient();
-    this._registerWidgets();
-    this._startSearch();
-  }
+    /**
+     * @constructor
+     */
+    constructor() {
+        this._registerClient();
+        this._registerWidgets();
+        this._startSearch();
+    }
 
-  /**
-   * @private
-   * Handles creating the search client and creating an instance of instant search
-   * @return {void}
-   */
-  _registerClient() {
-    this._searchClient = algoliasearch(
-      'VYLEWMPKEZ',
-      '8940a18fde155adf3f74b0912c267aa4'
-    );
+    /**
+     * @private
+     * Handles creating the search client and creating an instance of instant search
+     * @return {void}
+     */
+    _registerClient() {
+        this._searchClient = algoliasearch(
+            '4LYE83VBGC',
+            'd63d99ba5827fbe14a62c1deb5413067'
+        );
 
-    this._searchInstance = instantsearch({
-      indexName: 'ecommerce-v2',
-      searchClient: this._searchClient,
-    });
-  }
+        this._searchInstance = instantsearch({
+            indexName: 'spencer_williams_products',
+            searchClient: this._searchClient,
+        });
+    }
 
-  /**
-   * @private
-   * Adds widgets to the Algolia instant search instance
-   * @return {void}
-   */
-  _registerWidgets() {
-    this._searchInstance.addWidgets([
-      configure({
-        hitsPerPage: 3,
-      }),
-      searchBox({
-        container: '#searchbox',
-      }),
-      hits({
-        container: '#autocomplete-hits',
-        templates: { item: autocompleteProductTemplate },
-      }),
-    ]);
-  }
+    /**
+     * @private
+     * Adds widgets to the Algolia instant search instance
+     * @return {void}
+     */
+    _registerWidgets() {
+        this._searchInstance.addWidgets([
+            configure({
+                hitsPerPage: 3,
+            }),
+            searchBox({
+                container: '#searchbox',
+            }),
+            hits({
+                container: '#autocomplete-hits',
+                templates: { item: autocompleteProductTemplate },
+            }),
+        ]);
+    }
 
-  /**
-   * @private
-   * Starts instant search after widgets are registered
-   * @return {void}
-   */
-  _startSearch() {
-    this._searchInstance.start();
-  }
+    /**
+     * @private
+     * Starts instant search after widgets are registered
+     * @return {void}
+     */
+    _startSearch() {
+        this._searchInstance.start();
+    }
 }
 
 export default Autocomplete;
